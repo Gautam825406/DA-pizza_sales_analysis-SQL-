@@ -45,7 +45,7 @@ Stores descriptive information about pizzas.
 CREATE DATABASE pizzahut;
 USE pizzahut;
 ```
-Tables were created and populated using CSV files (orders.csv, order_details.csv, pizzas.csv, pizza_types.csv).
+```Tables were created and populated using CSV files (orders.csv, order_details.csv, pizzas.csv, pizza_types.csv).
 
 Analysis Performed
 Basic Analysis
@@ -111,6 +111,7 @@ Create the tables as defined above
 Run the queries section by section
 
 Analyze results and insights
+```
 
 Author
 Gautam Keshri
