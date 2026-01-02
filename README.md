@@ -44,6 +44,7 @@ Stores descriptive information about pizzas.
 ```sql
 CREATE DATABASE pizzahut;
 USE pizzahut;
+```
 Tables were created and populated using CSV files (orders.csv, order_details.csv, pizzas.csv, pizza_types.csv).
 
 Analysis Performed
