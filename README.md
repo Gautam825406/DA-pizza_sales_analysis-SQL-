@@ -1,80 +1,54 @@
-# Pizza Hut Sales Analysis (SQL)
+# Pizza Hut Sales Analysis (SQL Project)
 
 ## Overview
-This project analyzes Pizza Hut sales data using SQL to extract meaningful business insights.  
-The objective is to understand customer ordering behavior, revenue patterns, product performance, and time-based sales trends using a real-world relational database.
+This project analyzes Pizza Hut sales data using SQL to uncover meaningful business insights.  
+The goal is to understand customer ordering behavior, revenue trends, product performance, and time-based sales patterns using real-world relational data.
 
-The analysis is divided into **Basic, Intermediate, and Advanced SQL queries**, showcasing practical use of SQL for business analytics.
+The analysis is structured into **Basic, Intermediate, and Advanced SQL queries**, demonstrating strong command over joins, aggregations, subqueries, and window functions.
 
 ---
 
-## Database Structure
+## Dataset Description
+The database represents a typical pizza ordering system and consists of four related tables:
 
-The database represents a pizza ordering system and consists of four related tables.
-
-### Orders
+### 1. Orders
 Stores order-level information.
-- order_id
-- order_date
-- order_time
+- `order_id`
+- `order_date`
+- `order_time`
 
-### Order_Details
+### 2. Order_Details
 Stores item-level details for each order.
-- order_details_id
-- order_id
-- pizza_id
-- quantity
+- `order_details_id`
+- `order_id`
+- `pizza_id`
+- `quantity`
 
-### Pizzas
-Stores pricing and size information.
-- pizza_id
-- pizza_type_id
-- size
-- price
+### 3. Pizzas
+Contains pricing and size details for each pizza.
+- `pizza_id`
+- `pizza_type_id`
+- `size`
+- `price`
 
-### Pizza_Types
+### 4. Pizza_Types
 Stores descriptive information about pizzas.
-- pizza_type_id
-- name
-- category
-- ingredients
+- `pizza_type_id`
+- `name`
+- `category`
+- `ingredients`
 
 ---
 
 ## Database Setup
-
 ```sql
 CREATE DATABASE pizzahut;
 USE pizzahut;
-
-CREATE TABLE orders(
-    order_id INT,
-    order_date DATE,
-    order_time TIME
-);
-
-CREATE TABLE order_details(
-    order_details_id INT NOT NULL,
-    order_id INT NOT NULL,
-    pizza_id TEXT NOT NULL,
-    quantity INT NOT NULL
-);
-The remaining tables (pizzas and pizza_types) were imported using CSV files.
-
-Data Import (CSV Files)
-orders.csv → orders
-
-order_details.csv → order_details
-
-pizzas.csv → pizzas
-
-pizza_types.csv → pizza_types
-
-Data was imported using LOAD DATA INFILE to ensure efficient loading and consistency.
+Tables were created and populated using CSV files (orders.csv, order_details.csv, pizzas.csv, pizza_types.csv).
 
 Analysis Performed
 Basic Analysis
-Total number of orders
+Total number of orders placed
 
 Total revenue generated
 
@@ -98,44 +72,21 @@ Top 3 pizza types based on revenue
 Advanced Analysis
 Percentage contribution of each pizza type to total revenue
 
-Cumulative revenue generated over time
+Cumulative revenue over time
 
 Top 3 revenue-generating pizzas within each category
 
-Sample Queries
-Total Revenue Generated
-sql
-Copy code
-SELECT 
-    ROUND(SUM(od.quantity * p.price), 2) AS total_revenue
-FROM order_details od
-JOIN pizzas p 
-ON od.pizza_id = p.pizza_id;
-Top 3 Pizza Types by Revenue
-sql
-Copy code
-SELECT 
-    pt.name AS pizza_type,
-    ROUND(SUM(od.quantity * p.price), 2) AS total_revenue
-FROM order_details od
-JOIN pizzas p 
-ON od.pizza_id = p.pizza_id
-JOIN pizza_types pt 
-ON p.pizza_type_id = pt.pizza_type_id
-GROUP BY pt.name
-ORDER BY total_revenue DESC
-LIMIT 3;
 Key Insights
-A small number of pizza types contribute a large share of total revenue.
+Certain pizza categories consistently outperform others in both volume and revenue.
 
-Certain categories consistently outperform others in sales volume.
+Order volume peaks during specific hours, indicating clear customer behavior patterns.
 
-Orders peak during specific hours, indicating strong time-based customer behavior.
+A small number of pizza types contribute a significant portion of total revenue.
 
-Revenue shows steady growth with identifiable high-demand periods.
+Revenue growth over time shows steady business performance with identifiable peak periods.
 
 SQL Concepts Used
-INNER JOIN
+INNER JOINs
 
 Aggregate functions (SUM, COUNT, AVG)
 
@@ -143,20 +94,20 @@ GROUP BY and ORDER BY
 
 Subqueries
 
-Window functions (RANK, SUM OVER)
+Window functions (RANK(), SUM() OVER)
 
 Common Table Expressions (CTEs)
 
 Conclusion
-This project demonstrates how SQL can be effectively used to analyze transactional business data and generate actionable insights.
-The analysis supports data-driven decision-making in areas such as pricing strategy, inventory management, marketing planning, and operational optimization.
+This project demonstrates how SQL can be used to analyze transactional business data and extract actionable insights.
+The results can help support decisions related to pricing, inventory planning, marketing strategy, and operational efficiency.
 
-How to Run This Project
-Create the database and tables
+How to Use
+Import the CSV files into your SQL database
 
-Import the CSV files
+Create the tables as defined above
 
-Execute the queries section by section
+Run the queries section by section
 
 Analyze results and insights
 
